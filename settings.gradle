@@ -1,0 +1,2 @@
+include ':compressimage'
+include':example'
