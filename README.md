@@ -8,6 +8,7 @@
     CompressHelper.init(this);
     
   2.调用压缩方法
+  
       /**
        * imgPathList 未压缩图片集合
        * CompressCallBack 压缩结果回调
