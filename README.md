@@ -16,7 +16,8 @@
       CompressHelper.getDefault(imgPathList, new CompressCallBack() {
           @Override
           public void onFinish(List<File> compressList) {
+              //压缩成功后需要处理的代码......
               LogUtil.e(tag, "压缩完成=" + compressList.size());
-              OkGo.<String>post(url).tag(this).params(params).execute(uploadFileCallBack);
+              
           }
       });
