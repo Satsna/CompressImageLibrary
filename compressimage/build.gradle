@@ -29,8 +29,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     //图片压缩类库Luban
-    implementation project(':library')
-//    api 'top.zibin:Luban:1.1.8'
+    implementation 'top.zibin:Luban:1.1.8'
 
 
 }

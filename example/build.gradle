@@ -35,6 +35,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':compressimage')
-//    implementation 'com.github.Satsna:CompressImageLibrary:1.0.2'
+//    implementation 'com.github.Satsna:CompressImageLibrary:1.0.0'
 
 }
