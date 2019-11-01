@@ -1,7 +1,11 @@
 package com.satsna.compressimage.compress;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Environment;
+
+import com.satsna.compressimage.util.FileUtils;
+import com.satsna.compressimage.util.PermissionUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,6 +32,8 @@ public class CompressHelper {
     //压缩监听
     CompressCallBack compressCallBack;
 
+    private static boolean autoClear = true;//是否自动清除压缩缓存文件
+
     public CompressHelper() {
     }
 
@@ -49,6 +55,13 @@ public class CompressHelper {
         if (!file.exists()) {
             file.mkdirs();
         }
+        if (autoClear) {
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            if (PermissionUtils.isGranted(context, permissions)) {
+                FileUtils.deleteAllInDir(COPPRESS_PATH);
+            }
+        }
+
     }
 
     /**
@@ -59,6 +72,19 @@ public class CompressHelper {
      */
     public static void init(Context context, String compressPath) {
         CompressHelper.COPPRESS_PATH = compressPath;
+        init(context);
+    }
+
+    /**
+     * Application中初始化
+     *
+     * @param context
+     * @param compressPath 指定压缩文件夹
+     * @param autoClear    是否自动清除压缩缓存
+     */
+    public static void init(Context context, String compressPath, boolean autoClear) {
+        CompressHelper.COPPRESS_PATH = compressPath;
+        CompressHelper.autoClear = autoClear;
         init(context);
     }
 

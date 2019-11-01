@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.satsna.compressimage.compress.CompressCallBack;
 import com.satsna.compressimage.compress.CompressHelper;
@@ -25,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test() {
+        String a=Environment.getExternalStorageDirectory().getAbsolutePath() + "/1test";
+        File f=new File(a);
+        if(f.exists()){
+            File[] b = f.listFiles();
+        }
+        File[] b = f.listFiles();
+
         for (int i = 0; i < 20; i++) {
             imgPathList.add(testImagePath);
         }
