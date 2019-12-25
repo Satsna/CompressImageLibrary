@@ -31,6 +31,8 @@ public class CompressHelper {
     private List<String> originalList;
     //压缩监听
     CompressCallBack compressCallBack;
+    //是否出现失败,多张图片如果有一个失败,这认为全部失败,直接回调onError方法,由于onError方法会回调多次,故加此变量,仅限回调一次
+    private boolean error = false;
 
     private static boolean autoClear = true;//是否自动清除压缩缓存文件
 
@@ -122,7 +124,10 @@ public class CompressHelper {
 
             @Override
             public void onError(Throwable e) {
-                if (compressCallBack != null) compressCallBack.onError(e);
+                if (!error && compressCallBack != null) {
+                    error = true;
+                    compressCallBack.onError(e);
+                }
             }
         };
         Luban.with(context).load(originalList).setTargetDir(COPPRESS_PATH).setCompressListener(listenter).launch();
