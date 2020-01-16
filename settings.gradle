@@ -1,2 +1,2 @@
-include ':compressimage',':library'
+include ':compressimage'
 include ':example'
