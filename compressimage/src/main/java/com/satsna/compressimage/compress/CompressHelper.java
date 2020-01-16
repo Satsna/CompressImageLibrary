@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import top.zibin.luban.CompressionPredicate;
 import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 
@@ -33,8 +34,9 @@ public class CompressHelper {
     CompressCallBack compressCallBack;
     //是否出现失败,多张图片如果有一个失败,这认为全部失败,直接回调onError方法,由于onError方法会回调多次,故加此变量,仅限回调一次
     private boolean error = false;
-
     private static boolean autoClear = true;//是否自动清除压缩缓存文件
+    //100K以下不进行压缩
+    private static int ignoreSize = 100;
 
     public CompressHelper() {
     }
@@ -130,6 +132,31 @@ public class CompressHelper {
                 }
             }
         };
-        Luban.with(context).load(originalList).setTargetDir(COPPRESS_PATH).setCompressListener(listenter).launch();
+        Luban.with(context).ignoreBy(ignoreSize).load(originalList).setTargetDir(COPPRESS_PATH).setCompressListener(listenter).launch();
+    }
+
+    public static boolean isAutoClear() {
+        return autoClear;
+    }
+
+    public static void setAutoClear(boolean autoClear) {
+        CompressHelper.autoClear = autoClear;
+    }
+
+    public static int getIgnoreSize() {
+        return ignoreSize;
+    }
+
+    public static void setIgnoreSize(int ignoreSize) {
+        CompressHelper.ignoreSize = ignoreSize;
+    }
+
+
+    public static String getCoppressPath() {
+        return COPPRESS_PATH;
+    }
+
+    public static void setCoppressPath(String coppressPath) {
+        COPPRESS_PATH = coppressPath;
     }
 }

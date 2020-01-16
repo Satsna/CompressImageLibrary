@@ -35,7 +35,7 @@ public class BaseApplication extends Application {
      * 初始化图片压缩
      */
     private void initCompressHelper() {
-        CompressHelper.init(this, Environment.getExternalStorageDirectory().getAbsolutePath() + "/1test/");
+        CompressHelper.init(this);
     }
 
 
